@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "emoji-picker-react": "^4.9.2",
-    "firebase": "^10.11.0",
-    "react-toastify": "^10.0.5",
-    "zustand": "^4.5.2"
-  }
-}
