@@ -5,7 +5,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { auth, db, storage } from "../../lib/firebase";
 import upload from "../../lib/upload";
 
@@ -45,15 +52,14 @@ function Login() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    setLoading(true);
-
     const formData = new FormData(e.target);
 
     const { username, email, password } = Object.fromEntries(formData);
 
+    // VALIDATE INPUTS
     if (!username || !email || !password)
       return toast.warn("Please enter inputs!");
-    if (!avatar.file) return toast.warn("Please upload an avatar!");
+    if (!imageSelected.file) return toast.warn("Please upload an avatar!");
 
     // VALIDATE UNIQUE USERNAME
     const usersRef = collection(db, "users");
@@ -64,6 +70,8 @@ function Login() {
     }
 
     try {
+      setLoading(true);
+
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
       const imgUrl = await upload(imageSelected.file);

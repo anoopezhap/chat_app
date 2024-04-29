@@ -5,7 +5,7 @@ import "./detail.css";
 function Detail() {
   const { user } = useChatStore();
 
-  console.log(user);
+  //console.log(user);
   return (
     <div className="detail">
       <div className="user">

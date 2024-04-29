@@ -70,7 +70,7 @@ function AddUser() {
         }),
       });
 
-      console.log(newChatRef.id);
+      //console.log(newChatRef.id);
     } catch (err) {
       console.log(err);
     }
